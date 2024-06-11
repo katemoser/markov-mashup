@@ -1,3 +1,4 @@
+import { TypeAnimation } from "react-type-animation";
 
 /** Display the mashed-up poem
  *
@@ -5,11 +6,18 @@
  *
  * TODO: Add in typewriting styling
  */
-function MashupDisplay({ poem }: { poem: string }) {
+function MashupDisplay({ poem }: { poem: string; }) {
 
     return (
         <div className="MashupDisplay">
-            {poem}
+            <TypeAnimation
+                sequence={[poem]}
+                style={{
+                    whiteSpace: "pre",
+                    display: "block",
+                    textAlign: "left",
+                    width: "500px"
+                }} />
         </div>
     );
 }
