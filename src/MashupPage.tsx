@@ -14,7 +14,7 @@ interface IPoemState {
     isLoading: boolean;
 }
 
-function MashupPage() {
+function MashupPage({ restart }: { restart: () => void; }) {
 
     const [seeds, setSeeds] = useState<ISeedState>({
         data: [],
@@ -62,7 +62,10 @@ function MashupPage() {
             {
                 poem.data
                     ?
-                    <MashupDisplay poem={poem.data} />
+                    <>
+                        <MashupDisplay poem={poem.data} />
+                        <button onClick={restart}> Try again! </button>
+                    </>
                     :
                     <PoemSelectionForm seeds={seeds.data} handleSubmit={mashupPoem} />
             }
