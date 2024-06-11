@@ -20,7 +20,7 @@ class MashupApi {
         return seedData.seeds;
     }
 
-    static async mashUp(ids: number[]): Promise<string> {
+    static async mashUp(ids: string[]): Promise<string> {
         const response = await fetch(
             `${MARKOV_API_BASE_URL}/mashups`,
             {
