@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { ISeed } from "./interfaces";
 
-
-function PoemInput({options, inputId, handleChange, selectedValue}:{
-    options:ISeed[],
+type PoemInputProps = {
+    options: ISeed[],
     inputId: string,
     handleChange: (evt: React.FormEvent<HTMLSelectElement>) => void,
-    selectedValue: string
-}) {
+    selectedValue: string;
+};
 
-    // const [selectedValue, setSelectedValue] = useState<number | undefined>()
+/** Select input for poem creation form
+ *
+ * TODO: could rename to be more generic -- nothing about this is poem related
+ */
+function PoemInput({ options, inputId, handleChange, selectedValue }: PoemInputProps) {
 
-    // function handleChange(event: React.ChangeEvent<HTMLSelectElement>){
-    //     setSelectedValue(Number(event.target.value))
-    // }
     return (
         <div className="PoemInput">
             <select
@@ -22,13 +22,13 @@ function PoemInput({options, inputId, handleChange, selectedValue}:{
                 value={selectedValue}
                 onChange={handleChange}>
                 {
-                    options.map( o =>(
+                    options.map(o => (
                         <option key={o.id} value={o.id}>{o.title} by {o.author}</option>
                     ))
                 }
             </select>
         </div>
-    )
+    );
 }
 
 export default PoemInput;
