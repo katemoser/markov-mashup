@@ -1,11 +1,11 @@
 
-function MashupDisplay() {
+function MashupDisplay({ poem }: { poem: string }) {
 
     return (
         <div className="MashupDisplay">
-            MASHUP DISPLAY
-
+            Here's the mashup:
+            {poem}
         </div>
-    )
+    );
 }
 export default MashupDisplay;
