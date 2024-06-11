@@ -35,15 +35,14 @@ function MashupPage() {
         });
     }
 
-    async function mashupPoem(evt: FormEvent) {
-        evt.preventDefault();
+    async function mashupPoem(seedIds: string[]) {
         // setPoem({
         //     data: "",
         //     isLoading: true
         // })
 
         // TODO: replace with form input after refactoring form
-        const mashup = await MashupApi.mashUp([3,3]);
+        const mashup = await MashupApi.mashUp(seedIds);
 
         setPoem({
             data: mashup,
