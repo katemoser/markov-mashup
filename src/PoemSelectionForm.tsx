@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState } from "react";
 import PoemInput from "./PoemInput";
 import { ISeed } from "./interfaces";
 

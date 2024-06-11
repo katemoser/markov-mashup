@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ISeed } from "./interfaces";
 
 type PoemInputProps = {
