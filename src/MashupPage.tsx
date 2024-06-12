@@ -38,10 +38,6 @@ function MashupPage({ restart }: { restart: () => void; }) {
     async function mashupPoem(
         seedIds: string[],
         secondPoemAmount: number) {
-        // setPoem({
-        //     data: "",
-        //     isLoading: true
-        // })
 
         const ratio = [10-secondPoemAmount, secondPoemAmount]
         const mashup = await MashupApi.mashUp(seedIds, ratio);
