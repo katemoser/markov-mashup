@@ -35,14 +35,16 @@ function MashupPage({ restart }: { restart: () => void; }) {
         });
     }
 
-    async function mashupPoem(seedIds: string[]) {
+    async function mashupPoem(
+        seedIds: string[],
+        secondPoemAmount: number) {
         // setPoem({
         //     data: "",
         //     isLoading: true
         // })
 
-        // TODO: replace with form input after refactoring form
-        const mashup = await MashupApi.mashUp(seedIds);
+        const ratio = [10-secondPoemAmount, secondPoemAmount]
+        const mashup = await MashupApi.mashUp(seedIds, ratio);
 
         setPoem({
             data: mashup,
