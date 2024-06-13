@@ -10,6 +10,8 @@ This was a fun weekend project that I wanted to expand a bit.
 
 ✅ Slider between the two poems so one will be featured more heavily than the other
 
+✅ Add in color coded text so you can see which words come from what seed
+
 🔲 "Unhinged" meter, which will essentially determine the ratio of bigrams in the markov chain
 
 🔲 Allow user to select long/short poem length.
