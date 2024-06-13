@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import MashupDisplay from "./MashupDisplay";
 import PoemSelectionForm from "./PoemSelectionForm";
 import MashupApi from "./api";
@@ -30,6 +30,7 @@ function MashupPage({ restart }: { restart: () => void; }) {
     async function getSeedIds() {
         const seedsData = await MashupApi.getSeeds();
         //TODO: Add callback function here....
+        console.log("SEed data from API:", seedsData);
         setSeeds({
             data: seedsData,
             isLoading: false
@@ -40,7 +41,7 @@ function MashupPage({ restart }: { restart: () => void; }) {
         seedIds: string[],
         secondPoemAmount: number) {
 
-        const ratio = [10-secondPoemAmount, secondPoemAmount]
+        const ratio = [10 - secondPoemAmount, secondPoemAmount];
         const mashup = await MashupApi.mashUp(seedIds, ratio);
 
         setPoem({

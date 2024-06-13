@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@mui/material";
-import { TypeAnimation } from "react-type-animation";
+import { Grid } from "@mui/material";
+import TypewriterComponent from "typewriter-effect";
 
+import "./MashupDisplay.css";
 /** Display the mashed-up poem
  *
  * props: poem (string)
@@ -13,20 +14,26 @@ function MashupDisplay({ poem }: { poem: string; }) {
         <Grid className="MashupDisplay" container>
             <Grid xs={3}></Grid>
             <Grid xs={6}>
-                <Typography >
-                    <TypeAnimation
-                        sequence={[poem]}
-                        style={{
-                            whiteSpace: "pre",
-                            display: "block",
-                            textAlign: "left",
-                            width: "500px"
-                        }} />
-                </Typography>
+                <div style={{
+                    whiteSpace: "pre-line",
+                    display: "block",
+                    textAlign: "left"
+                }}>
 
+                    <TypewriterComponent
+                        options={{
+                            delay: 50
+                        }
+                        }
+                        onInit={(typewriter) => {
+                            typewriter.typeString(poem)
+                                .start();
+                        }} />
+
+                </div>
             </Grid>
             <Grid xs={3}></Grid>
-        </Grid>
+        </Grid >
     );
 }
 export default MashupDisplay;
