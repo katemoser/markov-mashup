@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import './App.css';
 import MashupPage from './MashupPage';
+import { Button, Typography } from '@mui/material';
 
 /** Landing page
  *
@@ -17,13 +18,13 @@ function App() {
   return (
     <div className='App'>
 
-      <h1> MARKOV MASHUP</h1>
+    <Typography variant="h2" >MARKOV MASHUP</Typography>
 
       {hasStarted
         ?
         <MashupPage restart={restart} />
         :
-        <button onClick={() => setHasStarted(true)}> START </button>
+        <Button variant="contained"onClick={() => setHasStarted(true)}> START </Button>
       }
     </div>
   );

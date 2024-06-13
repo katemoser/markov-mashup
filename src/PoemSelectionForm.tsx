@@ -1,7 +1,6 @@
-import { useState } from "react";
-import PoemInput from "./PoemInput";
+import { FormEvent, useState } from "react";
 import { ISeed } from "./interfaces";
-import { Slider } from "@mui/material";
+import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack, FormControl } from "@mui/material";
 
 type PoemSelectionFormProps = {
     seeds: ISeed[];
@@ -18,49 +17,65 @@ const INITIAL_FORM_DATA = {
 function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
 
     const [formData, setFormData] = useState(INITIAL_FORM_DATA);
-    console.log("form data:", formData)
+    console.log("form data:", formData);
 
-    function handleChange(evt: React.BaseSyntheticEvent | Event) {
-        console.log("in form, evt:", evt);
-        const { name, value } = evt.target;
+    function handleChange(evt: SelectChangeEvent | Event) {
+        const { name, value } = evt.target; // TODO: fix typing situation here
         setFormData(curr => ({
             ...curr,
             [name]: value,
         }));
     }
 
+    function onSubmit(evt: FormEvent) {
+        evt.preventDefault();
+        const seedIds = [formData["input1"], formData["input2"]];
+        handleSubmit(seedIds, formData.secondPoemAmount);
+    }
+
     return (
         <div className="PoemSelectionForm" >
-            {/* <h3> {seeds.map(s => s.id)}</h3> */}
-            <form onSubmit={(evt) => {
-                evt.preventDefault();
-                const seedIds = [formData["input1"], formData["input2"]]
-                handleSubmit(seedIds, formData.secondPoemAmount);
-            }}>
-                <PoemInput
-                    options={seeds}
-                    inputId="input1"
-                    handleChange={handleChange}
-                    selectedValue={formData["input1"]} />
+            <form onSubmit={onSubmit}>
+                <Stack
+                    direction={{ xs: 'column', sm: 'row' }}
+                    spacing={{ xs: 4 }}>
+                    <Select
+                        id="input1"
+                        name="input1"
+                        value={formData["input1"]}
+                        onChange={handleChange}>
+                        {
+                            seeds.map(o => (
+                                <MenuItem key={o.id} value={o.id}>{o.title} by {o.author}</MenuItem>
+                            ))
+                        }
+                    </Select>
 
-                <Slider
-                    name="secondPoemAmount"
-                    onChange={handleChange}
-                    value={formData.secondPoemAmount}
-                    valueLabelDisplay="off"
-                    shiftStep={1}
-                    step={1}
-                    min={1}
-                    max={9}
-                />
+                    <Slider
+                        name="secondPoemAmount"
+                        onChange={handleChange}
+                        value={formData.secondPoemAmount}
+                        valueLabelDisplay="off"
+                        shiftStep={1}
+                        step={1}
+                        min={1}
+                        max={9}
+                    />
 
-                <PoemInput
-                    options={seeds}
-                    inputId="input2"
-                    handleChange={handleChange}
-                    selectedValue={formData["input2"]} />
+                    <Select
+                        id="input2"
+                        name="input2"
+                        value={formData["input2"]}
+                        onChange={handleChange}>
 
-                <input type="submit" value="MASH IT UP" />
+                        {
+                            seeds.map(o => (
+                                <MenuItem key={o.id} value={o.id}>{o.title} by {o.author}</MenuItem>
+                            ))
+                        }
+                    </Select>
+                </Stack>
+                <Button type="submit" variant="contained" color="primary">MASH IT UP</Button>
             </form>
         </div>
     );

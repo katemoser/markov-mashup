@@ -3,6 +3,7 @@ import MashupDisplay from "./MashupDisplay";
 import PoemSelectionForm from "./PoemSelectionForm";
 import MashupApi from "./api";
 import { ISeed } from "./interfaces";
+import { Button } from "@mui/material";
 
 interface ISeedState {
     data: ISeed[],
@@ -55,14 +56,12 @@ function MashupPage({ restart }: { restart: () => void; }) {
 
     return (
         <div className="MashupPage">
-            <h2> Mashup Page</h2>
-
             {
                 poem.data
                     ?
                     <>
                         <MashupDisplay poem={poem.data} />
-                        <button onClick={restart}> Try again! </button>
+                        <Button variant="contained" onClick={restart}> Try again! </Button>
                     </>
                     :
                     <PoemSelectionForm seeds={seeds.data} handleSubmit={mashupPoem} />
