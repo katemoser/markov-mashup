@@ -56,8 +56,6 @@ function MashupPage({ restart }: { restart: () => void; }) {
 
     return (
         <div className="MashupPage">
-            <h2> Mashup Page</h2>
-
             {
                 poem.data
                     ?

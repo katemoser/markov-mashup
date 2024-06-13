@@ -2,22 +2,7 @@ import { useState } from 'react';
 
 import './App.css';
 import MashupPage from './MashupPage';
-
-
-import { createTheme } from '@mui/material/styles';
-import { purple, red } from '@mui/material/colors';
-import { Button } from '@mui/material';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: red[500],
-    },
-  },
-});
+import { Button, Typography } from '@mui/material';
 
 /** Landing page
  *
@@ -33,7 +18,7 @@ function App() {
   return (
     <div className='App'>
 
-      <h1> MARKOV MASHUP</h1>
+    <Typography variant="h2" >MARKOV MASHUP</Typography>
 
       {hasStarted
         ?

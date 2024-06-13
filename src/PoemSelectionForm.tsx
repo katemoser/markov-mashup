@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { ISeed } from "./interfaces";
-import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack } from "@mui/material";
+import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack, FormControl } from "@mui/material";
 
 type PoemSelectionFormProps = {
     seeds: ISeed[];
@@ -35,7 +35,6 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
 
     return (
         <div className="PoemSelectionForm" >
-            {/* <h3> {seeds.map(s => s.id)}</h3> */}
             <form onSubmit={onSubmit}>
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}
@@ -76,7 +75,7 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                         }
                     </Select>
                 </Stack>
-                <Button type="submit" variant="contained">MASH IT UP</Button>
+                <Button type="submit" variant="contained" color="primary">MASH IT UP</Button>
             </form>
         </div>
     );

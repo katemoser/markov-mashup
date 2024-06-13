@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { TypeAnimation } from "react-type-animation";
 
 /** Display the mashed-up poem
@@ -13,14 +13,16 @@ function MashupDisplay({ poem }: { poem: string; }) {
         <Grid className="MashupDisplay" container>
             <Grid xs={3}></Grid>
             <Grid xs={6}>
-                <TypeAnimation
-                    sequence={[poem]}
-                    style={{
-                        whiteSpace: "pre",
-                        display: "block",
-                        textAlign: "left",
-                        width: "500px"
-                    }} />
+                <Typography >
+                    <TypeAnimation
+                        sequence={[poem]}
+                        style={{
+                            whiteSpace: "pre",
+                            display: "block",
+                            textAlign: "left",
+                            width: "500px"
+                        }} />
+                </Typography>
 
             </Grid>
             <Grid xs={3}></Grid>
