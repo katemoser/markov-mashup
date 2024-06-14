@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { ISeed } from "./interfaces";
-import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack} from "@mui/material";
 
 type PoemSelectionFormProps = {
     seeds: ISeed[];
@@ -17,13 +17,25 @@ const INITIAL_FORM_DATA = {
 function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
 
     const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+    console.log("formData:", formData)
 
-    function handleChange(evt: SelectChangeEvent | Event) {
-        const { name, value } = evt.target; // TODO: fix typing situation here
+    function handleSelectChange(evt: SelectChangeEvent) {
+        const { name, value } = evt.target;
         setFormData(curr => ({
             ...curr,
             [name]: value,
         }));
+    }
+
+    // had to get creative with this typing --
+    // not thrilled about this but the slider is a real pain
+    // TODO: revisit this
+    function handleSliderChange(evt: Event, value: number | number[]){
+        const name = (evt.target as HTMLInputElement).name;
+        setFormData(curr => ({
+            ...curr,
+            [name]: value as number
+        }))
     }
 
     function onSubmit(evt: FormEvent) {
@@ -61,7 +73,7 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                         id="input1"
                         name="input1"
                         value={formData["input1"]}
-                        onChange={handleChange}>
+                        onChange={handleSelectChange}>
                         {
                             seeds.map(o => (
                                 <MenuItem key={o.id} value={o.id}>{o.title} by {o.author}</MenuItem>
@@ -75,7 +87,7 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                         }}
                         name="secondPoemAmount"
                         color="success"
-                        onChange={handleChange}
+                        onChange={handleSliderChange}
                         value={formData.secondPoemAmount}
                         valueLabelDisplay="off"
                         shiftStep={1}
@@ -106,7 +118,7 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                     color="secondary"
                     name="input2"
                     value={formData["input2"]}
-                    onChange={handleChange}>
+                    onChange={handleSelectChange}>
 
                     {
                         seeds.map(o => (
