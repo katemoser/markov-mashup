@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { ISeed } from "./interfaces";
-import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack, FormControl } from "@mui/material";
+import { Button, SelectChangeEvent, Slider, Select, MenuItem, Stack, useMediaQuery, useTheme } from "@mui/material";
 
 type PoemSelectionFormProps = {
     seeds: ISeed[];
@@ -17,7 +17,6 @@ const INITIAL_FORM_DATA = {
 function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
 
     const [formData, setFormData] = useState(INITIAL_FORM_DATA);
-    console.log("form data:", formData);
 
     function handleChange(evt: SelectChangeEvent | Event) {
         const { name, value } = evt.target; // TODO: fix typing situation here
@@ -38,8 +37,27 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
             <form onSubmit={onSubmit}>
                 <Stack
                     direction={{ xs: 'column', sm: 'row' }}
-                    spacing={{ xs: 4 }}>
+                    padding={{ xs: 1 }}
+                    spacing={{ xs: 1 }}>
+
                     <Select
+                        sx={{
+                            minWidth: { xs: 1, sm: 1 / 3 },
+                            color: 'primary.main',
+                            '.MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'primary.main',
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'primary.dark',
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'primary.dark',
+                            },
+                            '&.Mui-focused': {
+                                color: 'primary.dark',
+                            },
+
+                        }}
                         id="input1"
                         name="input1"
                         value={formData["input1"]}
@@ -52,7 +70,11 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                     </Select>
 
                     <Slider
+                        sx={{
+                            width: { xs: 1 },
+                        }}
                         name="secondPoemAmount"
+                        color="success"
                         onChange={handleChange}
                         value={formData.secondPoemAmount}
                         valueLabelDisplay="off"
@@ -63,21 +85,39 @@ function PoemSelectionForm({ seeds, handleSubmit }: PoemSelectionFormProps) {
                     />
 
                     <Select
-                        id="input2"
-                        name="input2"
-                        value={formData["input2"]}
-                        onChange={handleChange}>
+                        sx={{
+                            minWidth: { xs: 1, sm: 1 / 3 },
+                            color: 'secondary.main',
+                            '.MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'secondary.main',
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'secondary.dark',
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'secondary.dark',
+                            },
+                            '&.Mui-focused': {
+                                color: 'secondary.dark',
+                            },
 
-                        {
-                            seeds.map(o => (
-                                <MenuItem key={o.id} value={o.id}>{o.title} by {o.author}</MenuItem>
-                            ))
-                        }
-                    </Select>
-                </Stack>
-                <Button type="submit" variant="contained" color="primary">MASH IT UP</Button>
-            </form>
-        </div>
+                        }}
+                    id="input2"
+                    color="secondary"
+                    name="input2"
+                    value={formData["input2"]}
+                    onChange={handleChange}>
+
+                    {
+                        seeds.map(o => (
+                            <MenuItem key={o.id} value={o.id}>{o.title} by {o.author}</MenuItem>
+                        ))
+                    }
+                </Select>
+            </Stack>
+            <Button type="submit" variant="contained" color="success">MASH IT UP</Button>
+        </form>
+        </div >
     );
 }
 

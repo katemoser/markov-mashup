@@ -11,21 +11,28 @@ import { Button, Typography } from '@mui/material';
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
 
-  function restart(){
+  function restart() {
     setHasStarted(false);
   }
 
   return (
     <div className='App'>
 
-    <Typography variant="h2" >MARKOV MASHUP</Typography>
+      <Typography variant="h2" >MARKOV MASHUP</Typography>
+      <div style={{
+        position: "relative",
+        marginTop: "10%"
+      }}>
 
-      {hasStarted
-        ?
-        <MashupPage restart={restart} />
-        :
-        <Button variant="contained"onClick={() => setHasStarted(true)}> START </Button>
-      }
+        {hasStarted
+          ?
+          <MashupPage restart={restart} />
+          :
+          <Button
+            variant="contained"
+            onClick={() => setHasStarted(true)}> START </Button>
+        }
+      </div>
     </div>
   );
 }
