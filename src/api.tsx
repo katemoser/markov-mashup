@@ -1,4 +1,4 @@
-const MARKOV_API_BASE_URL = "http://127.0.0.1:5001";
+const MARKOV_API_BASE_URL = import.meta.env.VITE_MARKOV_API_BASE_URL;
 import { ISeed } from "./interfaces";
 
 class MashupApi {

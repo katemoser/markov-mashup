@@ -17,13 +17,16 @@ function MashupDisplay({ poem, restart }: { poem: IMashup; restart: () => void; 
             <Grid xs={12} sm={8} item>
                 <Typography
                     variant="h4"
-                    sx={{
-                        paddingBottom: "1em"
-                    }}>
+                   >
                     <span className="set1">{poem.seeds[0].title}</span> <span className="both"> vs </span><span className="set2" >{poem.seeds[1].title}</span>
                 </Typography>
             </Grid>
             <Grid xs={0} sm={2} item></Grid>
+            <Grid xs={12} item>
+                <Box style={{ margin: "1em" }}>
+                    <Button variant="contained" onClick={restart}> Try again! </Button>
+                </Box>
+            </Grid>
 
             <Grid xs={0} sm={2} md={3} item />
             <Grid xs={12} sm={8} md={6} item>
@@ -47,11 +50,7 @@ function MashupDisplay({ poem, restart }: { poem: IMashup; restart: () => void; 
             </Grid>
             <Grid xs={0} sm={2} md={3} item />
 
-            <Grid xs={12} item>
-                <Box style={{ margin: "3em" }}>
-                    <Button variant="contained" onClick={restart}> Try again! </Button>
-                </Box>
-            </Grid>
+
         </Grid >
 
     );
