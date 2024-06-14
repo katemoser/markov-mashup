@@ -60,10 +60,7 @@ function MashupPage({ restart }: { restart: () => void; }) {
             {
                 poem.data
                     ?
-                    <>
-                        <MashupDisplay poem={poem.data} />
-                        <Button variant="contained" onClick={restart}> Try again! </Button>
-                    </>
+                    <MashupDisplay poem={poem.data} restart={restart} />
                     :
                     <PoemSelectionForm seeds={seeds.data} handleSubmit={mashupPoem} />
             }
