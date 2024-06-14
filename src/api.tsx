@@ -13,7 +13,7 @@ class MashupApi {
     /** Mash up two poems */
     static async mashUp(
         ids: string[],
-        ratio: number[]=[1,1]): Promise<{mashup:string, seeds:{title:string}[]}> {
+        ratio: number[]=[1,1]): Promise<{mashup:string, seeds:ISeed[]}> {
         const response = await fetch(
             `${MARKOV_API_BASE_URL}/mashups`,
             {
@@ -27,6 +27,7 @@ class MashupApi {
                 })
             });
         const data = await response.json();
+        console.log("data from api:", data)
         return data;
     }
 }

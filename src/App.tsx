@@ -21,7 +21,7 @@ function App() {
       <Typography variant="h2" >MARKOV MASHUP</Typography>
       <div style={{
         position: "relative",
-        marginTop: "10%"
+        marginTop: "5%"
       }}>
 
         {hasStarted
