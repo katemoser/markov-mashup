@@ -2,8 +2,7 @@ import { useState } from "react";
 import MashupDisplay from "./MashupDisplay";
 import PoemSelectionForm from "./PoemSelectionForm";
 import MashupApi from "./api";
-import { ISeed } from "./interfaces";
-import { Button } from "@mui/material";
+import { ISeed, IMashup } from "./interfaces";
 
 interface ISeedState {
     data: ISeed[],
@@ -11,7 +10,7 @@ interface ISeedState {
 }
 
 interface IPoemState {
-    data: string,
+    data: IMashup,
     isLoading: boolean;
 }
 
@@ -23,7 +22,7 @@ function MashupPage({ restart }: { restart: () => void; }) {
     });
 
     const [poem, setPoem] = useState<IPoemState>({
-        data: "",
+        data: { mashup: "", seeds: [] },
         isLoading: false
     });
 
@@ -58,7 +57,7 @@ function MashupPage({ restart }: { restart: () => void; }) {
     return (
         <div className="MashupPage">
             {
-                poem.data
+                poem.data.mashup
                     ?
                     <MashupDisplay poem={poem.data} restart={restart} />
                     :

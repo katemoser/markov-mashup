@@ -2,13 +2,14 @@ import { Grid, Button, Box } from "@mui/material";
 import TypewriterComponent from "typewriter-effect";
 
 import "./MashupDisplay.css";
+import { IMashup } from "./interfaces";
 /** Display the mashed-up poem
  *
  * props: poem (string)
  *
  * TODO: Add in typewriting styling
  */
-function MashupDisplay({ poem, restart }: { poem: string; restart: () => void; }) {
+function MashupDisplay({ poem, restart }: { poem: IMashup; restart: () => void; }) {
 
     return (
 
@@ -27,7 +28,7 @@ function MashupDisplay({ poem, restart }: { poem: string; restart: () => void; }
                             delay: 10
                         }}
                         onInit={(typewriter) => {
-                            typewriter.typeString(poem)
+                            typewriter.typeString(poem.mashup)
                                 .start();
                         }} />
 
